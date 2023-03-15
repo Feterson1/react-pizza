@@ -4,7 +4,6 @@ import Categories from './components/Categories/Categories';
 import './scss/app.scss';
 import PizzaBlock from './components/PizzaBlock/PizzaBlock';
 import pizzas from '../src/assets/pizzas.json';
-console.log(pizzas);
 
 function App() {
   return (
@@ -19,8 +18,8 @@ function App() {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-              {pizzas.map((obj) => {
-                return <PizzaBlock {...obj} />;
+              {pizzas.map((obj, index) => {
+                return <PizzaBlock key={index} {...obj} />;
               })}
             </div>
           </div>
