@@ -3,7 +3,6 @@ import React from 'react';
 export default function Categories({ categoryValue, onChangeCategory }) {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', ' Закрытые'];
 
-  console.log(categoryValue);
   return (
     <div className="categories">
       <ul>
