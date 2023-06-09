@@ -2,19 +2,23 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSort } from '../../redux/slices/filterSlice';
 
-export default function Sort() {
+export const popup_menu = [
+  { name: 'популярности(DESC)', sortProperty: 'rating' },
+  { name: 'популярности(ASC)', sortProperty: '-rating' },
+  { name: 'цене(DESC)', sortProperty: 'price' },
+  { name: 'цене(ASC)', sortProperty: '-price' },
+  { name: 'Алфавиту(DESC)', sortProperty: 'title' },
+  { name: 'Алфавиту(ASC)', sortProperty: '-title' },
+];
+
+const SortComponent = () => {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
   const [isVisible, setIsVisible] = React.useState(false);
 
-  const popup_menu = [
-    { name: 'популярности(DESC)', sortProperty: 'rating' },
-    { name: 'популярности(ASC)', sortProperty: '-rating' },
-    { name: 'цене(DESC)', sortProperty: 'price' },
-    { name: 'цене(ASC)', sortProperty: '-price' },
-    { name: 'Алфавиту(DESC)', sortProperty: 'title' },
-    { name: 'Алфавиту(ASC)', sortProperty: '-title' },
-  ];
+ 
+
+
   const onClickListItem = (obj) => {
     dispatch(setSort(obj));
     setIsVisible(false);
@@ -55,3 +59,6 @@ export default function Sort() {
     </div>
   );
 }
+
+
+export default SortComponent;

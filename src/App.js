@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Home from './pages/Home';
+import HomePage from './pages/Home';
 import './scss/app.scss';
 import NotFound from './pages/NotFound';
 import { Routes, Route } from 'react-router-dom';
@@ -17,7 +17,7 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
