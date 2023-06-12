@@ -3,10 +3,10 @@ import ReactPaginate from 'react-paginate';
 import qs from 'qs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/filterSlice';
 import Categories from '../components/Categories/Categories';
 import SortComponent, { popup_menu } from '../components/Sort/Sort';
-import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
+import PizzaBlockComponent from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
 import { SearchContext } from '../App';
@@ -104,7 +104,7 @@ const  HomePage = () => {
 
 
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => <PizzaBlockComponent key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (
