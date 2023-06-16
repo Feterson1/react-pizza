@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../redux/slices/cart/cartSlice';
+import { selectCartItemById } from '../../redux/slices/filter/filterSlice';
 
 const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
   const typeNames = ['тонкое', 'традиционное'];
@@ -9,7 +10,7 @@ const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [activeType, setActiveType] = React.useState(0);
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
+  const cartItem = useSelector(selectCartItemById(id));
 
   const addedCount = cartItem? cartItem.count : 0;
 
@@ -40,7 +41,7 @@ const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
               return (
                 <li
                   onClick={() => setActiveType(index)}
-                  className={activeType == index ? 'active' : ''}
+                  className={activeType === index ? 'active' : ''}
                   key={index}>
                   {typeNames[type]}
                 </li>
@@ -53,7 +54,7 @@ const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
                 <li
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={activeIndex == index ? 'active' : ''}>
+                  className={activeIndex === index ? 'active' : ''}>
                   {size} см.
                 </li>
               );

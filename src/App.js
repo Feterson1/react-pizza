@@ -7,14 +7,14 @@ import { Routes, Route } from 'react-router-dom';
 import CartPage from './pages/Cart';
 import HeaderComponent from './components/Header/Header';
 
-export const SearchContext = React.createContext('');
+
 
 function App() {
-  const [searchValue, setSearchValue] = React.useState('');
+  
 
   return (
     <div className="wrapper">
-      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+      
         <HeaderComponent />
         <div className="content">
           <Routes>
@@ -23,7 +23,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-      </SearchContext.Provider>
+   
     </div>
   );
 }

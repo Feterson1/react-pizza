@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../../redux/slices/filter/filterSlice';
+import { selectSort, setSort } from '../../redux/slices/filter/filterSlice';
 
 export const popup_menu = [
   { name: 'популярности(DESC)', sortProperty: 'rating' },
@@ -13,7 +13,7 @@ export const popup_menu = [
 
 const SortComponent = () => {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
+  const sort = useSelector(selectSort);
   const [isVisible, setIsVisible] = React.useState(false);
 
   const sortRef = useRef();
@@ -69,7 +69,7 @@ const SortComponent = () => {
                 <li
                   onClick={() => onClickListItem(obj)}
                   key={i}
-                  className={sort.sortProperty == obj.sortProperty ? 'active' : ''}>
+                  className={sort.sortProperty === obj.sortProperty ? 'active' : ''}>
                   {obj.name}
                 </li>
               );
