@@ -10,3 +10,14 @@ async (params,thunkAPI) => {
   
     return data;
 });
+
+
+
+export const getPizzaById = createAsyncThunk('pizza/getPizzaById', 
+async (id) => { 
+    
+
+    const {data} = await axios.get(`https://6411dc076e3ca31753000a5d.mockapi.io/items/${id}`);
+  
+    return data;
+});

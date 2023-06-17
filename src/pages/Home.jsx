@@ -1,6 +1,6 @@
 import React ,{useEffect,useRef}from 'react';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { selectFilter,setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/filterSlice';
 import Categories from '../components/Categories/Categories';
 import SortComponent, { popup_menu } from '../components/Sort/Sort';
@@ -109,7 +109,12 @@ const  HomePage = () => {
 
 
 
-  const pizzas = items.map((obj) => <PizzaBlockComponent key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => 
+  <Link 
+  key={obj.id}
+  to={`pizza/${obj.id}`}
+
+  ><PizzaBlockComponent  {...obj} /></Link>);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (
