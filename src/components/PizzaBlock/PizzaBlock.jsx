@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../redux/slices/cart/cartSlice';
 import { selectCartItemById } from '../../redux/slices/filter/filterSlice';
+import { Link } from 'react-router-dom';
 
 const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
   const typeNames = ['тонкое', 'традиционное'];
@@ -28,13 +29,17 @@ const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
 
   }
 
+ 
+
 
 
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
+        <Link to={`pizza/${id}`}>
         <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
         <h4 className="pizza-block__title">{title}</h4>
+        </Link>
         <div className="pizza-block__selector">
           <ul>
             {types.map((type, index) => {
