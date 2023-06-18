@@ -22,6 +22,7 @@ const cartSlice = createSlice({
                 });
             }
             state.totalPrice = state.items.reduce((sum,obj) => {
+                console.log(sum,obj)
             return (obj.price * obj.count) + sum},0)
            
         },
@@ -30,6 +31,8 @@ const cartSlice = createSlice({
         if(findItem){
             findItem.count--;
         }
+       
+      
 
         },
         removeItem(state,action){

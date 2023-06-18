@@ -109,7 +109,7 @@ const  HomePage = () => {
 
 
 
-  const pizzas = items.map((obj) => <PizzaBlockComponent key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) =><PizzaBlockComponent key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPizzas } from "../../thunks/pizza/pizzaThunk";
+import { fetchPizzas, getPizzaById } from "../../thunks/pizza/pizzaThunk";
 
 const initialState = {
     items: [],
     status: 'loading', // loading | success | error
+    pizzaItem: {},
 };
 
 
@@ -22,23 +23,46 @@ const pizzaSlice = createSlice({
       
         state.items = action.payload;
         state.status = 'success';
-        console.log(state.status)
+        
 
        },
        [fetchPizzas.pending]: (state) => {
         
         state.status = 'loading';
         state.items = [];
-        console.log(state.status)
+        
 
        },
        [fetchPizzas.rejected]: (state) => {
         
         state.status = 'error';
         state.items = [];
-        console.log(state.status)
+        
 
        },
+       [getPizzaById.fulfilled]: (state,action) => {
+      
+        state.pizzaItem = action.payload;
+        state.status = 'success';
+        
+
+       },
+       [getPizzaById.pending]: (state) => {
+        
+        state.status = 'loading';
+        state.pizzaItem = {};
+        
+
+       },
+       [getPizzaById.rejected]: (state) => {
+        
+        state.status = 'error';
+        state.pizzaItem = {};
+        console.log(state.status)
+        
+
+       },
+       
 
     },
 });
