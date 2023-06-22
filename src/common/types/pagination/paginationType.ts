@@ -1,4 +1,4 @@
 type PaginationProps = {
     currentPage: number;
-    onChangePage: any;
+    onChangePage: (page:number) => void;
 }

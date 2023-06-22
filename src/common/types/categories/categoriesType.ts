@@ -1,4 +1,5 @@
 type CategoriesProps = {
     categoryValue: number;
-    onChangeCategory: any;
+    onChangeCategory: (idx: number)=> void;
+    
 }

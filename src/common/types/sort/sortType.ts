@@ -6,3 +6,7 @@ type SortItem = {
 
 
 };
+
+type PopupClick = React.MouseEvent & {
+    composedPath: () => Node[]
+}

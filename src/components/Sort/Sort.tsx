@@ -25,13 +25,12 @@ const SortComponent: React.FC = () => {
 
  useEffect(()=>{
 
-  const handleClickOutside = (event: any) => {
-    
-    if(!event.composedPath().includes(sortRef.current)){
-    
-      setIsVisible(false)
-       
-    }
+  const handleClickOutside = (event: MouseEvent) => {
+ 
+    const _event = event.composedPath()
+    if (sortRef.current && !_event.includes(sortRef.current)) {
+    setIsVisible(false)
+     }
   }
 
   document.body.addEventListener('click',handleClickOutside);
