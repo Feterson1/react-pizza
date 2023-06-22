@@ -1,27 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getPizzaById } from "../../redux/thunks/pizza/pizzaThunk";
 import { selectPizzaData } from "../../redux/slices/pizza/pizzaSlice";
+import axios from "axios";
 
 
 
-const FullPizzaPage = () => {
+const FullPizzaPage: React.FC = () => {
+
+    const [pizzaItem,setPizza] = useState<{
+        imageUrl: string;
+        title: string;
+        price: number;
+
+    }>();
+
     const {id} = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
 
-    const {pizzaItem,status} = useSelector(selectPizzaData);
-    console.log(pizzaItem)
+    // const {pizzaItem,status} = useSelector(selectPizzaData);
+    
 
-    const fetchPizzaById = () => {
-
-        const pizzaId = id;
-
-        dispatch(getPizzaById(pizzaId));
-    }
-
+   
     useEffect(()=>{
+
+        const fetchPizzaById = async () => {
+            try{
+                const {data} = await axios.get(`https://6411dc076e3ca31753000a5d.mockapi.io/items/${id}`);
+                setPizza(data);
+
+            }catch(e){
+                alert('Пиццц нет');
+                navigate('/');
+
+            }
+        
+        }
+    
+
         fetchPizzaById();
         
 
@@ -29,7 +48,7 @@ const FullPizzaPage = () => {
     
     
 
-    if(status === 'error'){
+    if(!pizzaItem){
         return(
         <div className="content__error-info">
         <h2>Произошла ошибка 😕</h2>

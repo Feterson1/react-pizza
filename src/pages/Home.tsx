@@ -2,17 +2,16 @@ import React ,{useEffect,useRef}from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { selectFilter,setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/filterSlice';
-import Categories from '../components/Categories/Categories';
 import SortComponent, { popup_menu } from '../components/Sort/Sort';
 import PizzaBlockComponent from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPizzas } from '../redux/thunks/pizza/pizzaThunk';
 import { selectPizzaData } from '../redux/slices/pizza/pizzaSlice';
+import CategoriesComponent from '../components/Categories/Categories';
 
-const  HomePage = () => {
+const  HomePage: React.FC = ():JSX.Element => {
 
 
 
@@ -29,11 +28,11 @@ const  HomePage = () => {
 
  
 
-  const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id));
+  const onChangeCategory = (idx:number) => {
+    dispatch(setCategoryId(idx));
   };
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page:number) => {
+    dispatch(setCurrentPage(page));
   };
   const getPizzas = async () => {
     
@@ -44,7 +43,10 @@ const  HomePage = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
   
 
-    dispatch(fetchPizzas({
+    dispatch(
+       //@ts-ignore
+      
+      fetchPizzas({
       order,
       sortBy,
       category,
@@ -62,7 +64,7 @@ const  HomePage = () => {
        sortType: sortType,
        categoryId,
        currentPage,
- 
+
      });
  
      navigate(`?${queryString}`);
@@ -109,13 +111,13 @@ const  HomePage = () => {
 
 
 
-  const pizzas = items.map((obj) =><PizzaBlockComponent key={obj.id} {...obj} />);
+  const pizzas = items.map((obj:any) =><PizzaBlockComponent key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (
     <div className="container">
       <div className="content__top">
-        <Categories categoryValue={categoryId} onChangeCategory={onChangeCategory} />
+        <CategoriesComponent categoryValue={categoryId} onChangeCategory={onChangeCategory} />
         <SortComponent />
       </div>
       <h2 className="content__title">Все пиццы</h2>

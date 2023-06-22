@@ -5,7 +5,8 @@ import { addItem } from '../../redux/slices/cart/cartSlice';
 import { selectCartItemById } from '../../redux/slices/filter/filterSlice';
 import { Link } from 'react-router-dom';
 
-const PizzaBlockComponent =({id,title, price, imageUrl, sizes, types }) => {
+const PizzaBlockComponent: React.FC<PizzaBlockProps> =({id,title, price, imageUrl, sizes, types}) => {
+  
   const typeNames = ['тонкое', 'традиционное'];
   
   const [activeIndex, setActiveIndex] = React.useState(0);
