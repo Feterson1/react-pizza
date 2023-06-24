@@ -1,4 +1,4 @@
-type Pizza =  {
+export type Pizza =  {
     order: string
     sortBy: string
     category: string
@@ -6,9 +6,19 @@ type Pizza =  {
     currentPage: number
 }
 
+export type PizzaSlice = {
+    id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    sizes: number[];
+    types: number[];
+    rating: number;
+  };
+  
 
 
-type PizzaBlockProps = { 
+export type PizzaBlockProps = { 
     id: string,
     title: string;
     price: number;

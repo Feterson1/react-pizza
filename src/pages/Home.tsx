@@ -6,17 +6,20 @@ import SortComponent, { popup_menu } from '../components/Sort/Sort';
 import PizzaBlockComponent from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { fetchPizzas } from '../redux/thunks/pizza/pizzaThunk';
 import { selectPizzaData } from '../redux/slices/pizza/pizzaSlice';
 import CategoriesComponent from '../components/Categories/Categories';
+import { useAppDispatch } from '../utils/hook';
+import { FilterSliceState } from '../common/types/store/filter/FilterSliceType';
+import { SearchPizzaParams } from '../common/types/store/pizza/PizzaSliceType';
 
 const  HomePage: React.FC = ():JSX.Element => {
 
 
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
@@ -51,47 +54,53 @@ const  HomePage: React.FC = ():JSX.Element => {
       sortBy,
       category,
       search,
-      currentPage,
+      currentPage: String(currentPage),
 
     }));
   }
   
 
   // Если изменили параметры и был первый рендер
-  useEffect(()=>{
-    if(isMounted.current){
-     const queryString = qs.stringify({
-       sortType: sortType,
-       categoryId,
-       currentPage,
+  // useEffect(()=>{
+  //   if(isMounted.current){
+  //    const queryString = qs.stringify({
+  //      sortType: sortType,
+  //      categoryId,
+  //      currentPage,
 
-     });
+  //    });
+
+       
  
-     navigate(`?${queryString}`);
+  //    navigate(`?${queryString}`);
  
-    }
-    isMounted.current = true;
+  //   }
+  //   if(!window.location.search){
+  //     dispatch(fetchPizzas({} as SearchPizzaParams))
+  //   }
  
      
  
-   },[categoryId,sortType,currentPage,searchValue]);
+  //  },[categoryId,sortType,currentPage,searchValue]);
 
    // Если был первый рендер, то проверяем URL-параметры и сохраняем в Redux
-  useEffect(()=>{
-    if(window.location.search){
-      const params = qs.parse(window.location.search.substring(1));
-      const sort = popup_menu.find((obj) => obj.sortProperty === params.sortType)
+  // useEffect(()=>{
+  //   if(window.location.search){
+  //     const params = qs.parse(window.location.search.substring(1))as unknown as SearchPizzaParams;
+  //     const sort = popup_menu.find((obj) => obj.sortProperty === params.sortBy)
+  //     dispatch(setFilters({
+  //       searchValue: params.search,
+  //       categoryId: Number(params.category),
+  //       currentPage: Number(params.currentPage),
+  //       sort: sort || popup_menu[0],
 
-      dispatch(setFilters({
-        ...params,
-        sort,
-      }))
+  //     }));
 
-      isSearch.current = true;
+  //     isSearch.current = true;
       
-    }
+  //   }
 
-  },[])
+  // },[])
   // Если был первый рендер, то запрашиваем пиццы
   useEffect(() => {
 

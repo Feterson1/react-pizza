@@ -1,8 +1,7 @@
-import { current } from '@reduxjs/toolkit';
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-
 import styles from './Pagination.module.scss';
+import { PaginationProps } from '../../common/types/pagination/paginationType';
 
 const PaginationComponent:React.FC<PaginationProps> = ({ currentPage, onChangePage }) =>{
   return (
