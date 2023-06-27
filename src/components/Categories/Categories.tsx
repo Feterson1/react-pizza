@@ -8,7 +8,9 @@ import React from 'react';
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', ' Закрытые'];
 
 
-const  CategoriesComponent:React.FC<CategoriesProps> = ({ categoryValue, onChangeCategory}) => {
+const  CategoriesComponent:React.FC<CategoriesProps> = React.memo(({ categoryValue, onChangeCategory}) => {
+
+  
 
 
 
@@ -28,6 +30,6 @@ const  CategoriesComponent:React.FC<CategoriesProps> = ({ categoryValue, onChang
       </ul>
     </div>
   );
-}
+})
 
 export default CategoriesComponent;

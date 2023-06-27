@@ -27,7 +27,7 @@ const HeaderComponent = () => {
             </div>
           </div>
         </Link>
-        <SearchComponent />
+         {location.pathname !== '/cart' && <SearchComponent />}
         <div className="header__cart">
        {location.pathname !== '/cart' && ( 
        

@@ -1,4 +1,4 @@
-import React ,{useEffect,useRef}from 'react';
+import React ,{useCallback, useEffect,useRef}from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { selectFilter,setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/filterSlice';
@@ -13,6 +13,7 @@ import CategoriesComponent from '../components/Categories/Categories';
 import { useAppDispatch } from '../utils/hook';
 import { FilterSliceState } from '../common/types/store/filter/FilterSliceType';
 import { SearchPizzaParams } from '../common/types/store/pizza/PizzaSliceType';
+
 
 const  HomePage: React.FC = ():JSX.Element => {
 
@@ -31,9 +32,12 @@ const  HomePage: React.FC = ():JSX.Element => {
 
  
 
-  const onChangeCategory = (idx:number) => {
+  const onChangeCategory = useCallback((idx:number) => {
+
     dispatch(setCategoryId(idx));
-  };
+
+  },[])
+
   const onChangePage = (page:number) => {
     dispatch(setCurrentPage(page));
   };
@@ -123,11 +127,14 @@ const  HomePage: React.FC = ():JSX.Element => {
   const pizzas = items.map((obj:any) =><PizzaBlockComponent key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+
+  
+
   return (
     <div className="container">
       <div className="content__top">
         <CategoriesComponent categoryValue={categoryId} onChangeCategory={onChangeCategory} />
-        <SortComponent />
+        <SortComponent value={sort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === 'error' || items.length === 0 ? (

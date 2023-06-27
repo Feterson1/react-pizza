@@ -1,4 +1,4 @@
-import { SortPropertyEnum } from "../store/filter/FilterSliceType";
+import { Sort, SortPropertyEnum } from "../store/filter/FilterSliceType";
 
 export type SortItem = {
 
@@ -11,4 +11,8 @@ export type SortItem = {
 
 export type PopupClick = React.MouseEvent & {
     composedPath: () => Node[]
+}
+
+export type SortPopupProps = {
+    value: Sort;
 }
