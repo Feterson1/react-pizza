@@ -1,8 +1,8 @@
-import HomePage from './pages/Home';
+import HomePage from './pages/Home/Home';
 import './scss/app.scss';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound/NotFound';
 import { Routes, Route } from 'react-router-dom';
-import CartPage from './pages/Cart';
+import CartPage from './pages/Cart/Cart';
 import FullPizzaPage from './pages/FullPizza/FullPizza';
 import MainLayout from './layouts/MainLayout/mainLayout';
 

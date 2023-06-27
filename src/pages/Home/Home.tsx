@@ -1,18 +1,18 @@
 import React ,{useCallback, useEffect,useRef}from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { selectFilter,setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filter/filterSlice';
-import SortComponent, { popup_menu } from '../components/Sort/Sort';
-import PizzaBlockComponent from '../components/PizzaBlock/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination/Pagination';
+import { selectFilter,setCategoryId, setCurrentPage, setFilters } from '../../redux/slices/filter/filterSlice';
+import SortComponent, { popup_menu } from '../../components/Sort/Sort';
+import PizzaBlockComponent from '../../components/PizzaBlock/PizzaBlock';
+import Skeleton from '../../components/PizzaBlock/Skeleton';
+import Pagination from '../../components/Pagination/Pagination';
 import { useSelector } from 'react-redux';
-import { fetchPizzas } from '../redux/thunks/pizza/pizzaThunk';
-import { selectPizzaData } from '../redux/slices/pizza/pizzaSlice';
-import CategoriesComponent from '../components/Categories/Categories';
-import { useAppDispatch } from '../utils/hook';
-import { FilterSliceState } from '../common/types/store/filter/FilterSliceType';
-import { SearchPizzaParams } from '../common/types/store/pizza/PizzaSliceType';
+import { fetchPizzas } from '../../redux/thunks/pizza/pizzaThunk';
+import { selectPizzaData } from '../../redux/slices/pizza/pizzaSlice';
+import CategoriesComponent from '../../components/Categories/Categories';
+import { useAppDispatch } from '../../utils/hook';
+import { FilterSliceState } from '../../common/types/store/filter/FilterSliceType';
+import { SearchPizzaParams } from '../../common/types/store/pizza/PizzaSliceType';
 
 
 const  HomePage: React.FC = ():JSX.Element => {
